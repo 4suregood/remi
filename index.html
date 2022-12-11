@@ -1,62 +1,119 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Remi</title>
-	<meta charset="UTF-8" />
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" type="text/css" href="css/remi.css" media="screen" />
-	<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-	<script type="text/javascript" src="js/remi.js"></script>
+<head>
+  <title>Remi</title>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/remi.css" media="screen" />
+  <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+  <script type="text/javascript" src="js/remi.js"></script>
 </head>
+
 <body>
 
-	<h2>Calculate Remi score</h2>
+  <h2>Calculate Remi score</h2>
 
-<p>
+  <p>
 
-<form id="remiForm" action="">
+  <form id="remiForm" action="">
 
-<table style="width:320px">
-<tr>
-  <td class="label"></td>
-  <td class="label"></td>
-  <td class="label">Result</td>
-</tr>
-<tr>
-  <td class="label">A</td>
-  <td><input type="number" id="a" value=""></td>
-  <td id="aS"></td>
-</tr>
+    <table>
+      <tr>
+        <td class="label">Player</td>
+        <td class="label">Score</td>
+        <td class="label">Result</td>
+        <td class="label">Gain/Lose</td>
+      </tr>
+      <tr>
+        <td class="label">A</td>
+        <td class="inputTd"><input type="number" id="a" value="" class="narrow score" placeholder="+/- score"></td>
+        <td id="aS"></td>
+        <td>
+          <div id="aWinBox" class="parent hidden">
+            <span class="child"><img class="clipart"
+                src="https://media.tenor.com/c69ZMe--5s8AAAAC/money-make-it-rain.gif"> <span id="aWin"
+                class="win blink_me"></span></span>
+          </div>
+          <div id="aLoseBox" class="parent hidden">
+            <span class="child"><img class="clipart" src="https://media.tenor.com/0pVGSBcu_CgAAAAM/money-rain-cash.gif">
+              <span id="aLose" class="lose"></span></span>
+          </div>
+        </td>
+      </tr>
 
-<tr>
-  <td class="label">B</td>
-  <td><input type="number" id="b" value=""></td>
-  <td id="bS"></td>
-</tr>
-<tr>
-  <td class="label">C</td>
-  <td><input type="number" id="c" value=""></td>
-  <td id="cS"></td>
-</tr>
-<tr>
-  <td class="label">D</td>
-  <td><input type="number" id="d" value=""></td>
-  <td id="dS"></td>
-</tr>
+      <tr>
+        <td class="label">B</td>
+        <td class="inputTd"><input type="number" id="b" value="" class="narrow score" placeholder="+/- score"></td>
+        <td id="bS"></td>
+        <td>
+          <div id="bWinBox" class="parent hidden">
+            <span class="child"><img class="clipart"
+                src="https://media.tenor.com/c69ZMe--5s8AAAAC/money-make-it-rain.gif"> <span id="bWin"
+                class="win blink_me"></span></span>
+          </div>
+          <div id="bLoseBox" class="parent hidden">
+            <span class="child"><img class="clipart" src="https://media.tenor.com/0pVGSBcu_CgAAAAM/money-rain-cash.gif">
+              <span id="bLose" class="lose"></span></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">C</td>
+        <td class="inputTd"><input type="number" id="c" value="" class="narrow score" placeholder="+/- score"></td>
+        <td id="cS"></td>
+        <td>
+          <div id="cWinBox" class="parent hidden">
+            <span class="child"><img class="clipart"
+                src="https://media.tenor.com/c69ZMe--5s8AAAAC/money-make-it-rain.gif"> <span id="cWin"
+                class="win blink_me"></span></span>
+          </div>
+          <div id="cLoseBox" class="parent hidden">
+            <span class="child"><img class="clipart" src="https://media.tenor.com/0pVGSBcu_CgAAAAM/money-rain-cash.gif">
+              <span id="cLose" class="lose"></span></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">D</td>
+        <td class="inputTd"><input type="number" id="d" value="" class="narrow score" placeholder="+/- score"></td>
+        <td id="dS"></td>
+        <td>
+          <div id="dWinBox" class="parent hidden">
+            <span class="child"><img class="clipart"
+                src="https://media.tenor.com/c69ZMe--5s8AAAAC/money-make-it-rain.gif"> <span id="dWin"
+                class="win blink_me"></span></span>
+          </div>
+          <div id="dLoseBox" class="parent hidden">
+            <span class="child"><img class="clipart" src="https://media.tenor.com/0pVGSBcu_CgAAAAM/money-rain-cash.gif">
+              <span id="dLose" class="lose"></span></span>
+          </div>
+        </td>
+      </tr>
 
-<tr>
-  <td class="label"></td>
-  <td><input type="submit" value="Submit"></td>
-  <td class="label"></td>
-</tr>
+      <tr>
+        <td class="label grey">Point Worth [&#162;]</td>
+        <td class="grey inputTd"><input type="number" id="m" value="" class="narrower" placeholder="[&#162;]"></td>
+        <td class="label"></td>
+        <td class="label"></td>
+      </tr>
 
-</table>
+      <tr>
+        <td class="label"></td>
+        <td class="inputTd"><input type="submit" value="Calculate" class="score"></td>
+        <td class="label"></td>
+        <td class="label"></td>
+      </tr>
 
-</form>
-</p>
+
+    </table>
+
+  </form>
+  </p>
 
 
 
 </body>
+
 </html>
