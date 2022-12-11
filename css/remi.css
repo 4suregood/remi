@@ -37,12 +37,16 @@ td {
 	width: 20%;
 }
 
+.firstColumn {
+	width: 5%;
+}
+
 .narrow {
-	width: 60px;
+	width: 70px;
 }
 
 .narrower {
-	width: 20px;
+	width: 30px;
 }
 
 .grey {
