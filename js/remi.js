@@ -50,6 +50,14 @@ function display(p, n) {
 
 	const winId = "#" + p + "Win";
 	const loseId = "#" + p + "Lose";
+	if (!$(winBoxId).hasClass("hidden")) {
+		$(winBoxId).addClass("hidden");
+	}
+
+	if (!$(loseBoxId).hasClass("hidden")) {
+		$(loseBoxId).addClass("hidden");
+	}
+
 	if (n < 0) {
 		// win
 		$(winBoxId).removeClass("hidden");
