@@ -4,6 +4,11 @@ $(document).ready(function () {
 
 	//alert("doc ready");
 
+	$("form").on("reset", function (event) {
+		//alert("reset");
+		location.reload();
+	});
+
 	$("form").on("submit", function (event) {
 		event.preventDefault();
 		const a = $("#a").val();
