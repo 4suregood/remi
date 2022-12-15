@@ -1,8 +1,12 @@
-
-
 $(document).ready(function () {
 
 	//alert("doc ready");
+	$("#err").hide();
+	// $("#a").val(25);
+	// $("#b").val(432);
+	// $("#c").val(-124);
+	// $("#d").val(876);
+	// $("#m").val(5)
 
 	$("form").on("reset", function (event) {
 		//alert("reset");
@@ -11,62 +15,69 @@ $(document).ready(function () {
 
 	$("form").on("submit", function (event) {
 		event.preventDefault();
-		const a = $("#a").val();
-		const b = $("#b").val();
-		const c = $("#c").val();
-		const d = $("#d").val();
+		$("#err").hide();
+		const a = parseInt($("#a").val());
+		const b = parseInt($("#b").val());
+		const c = parseInt($("#c").val());
+		const d = parseInt($("#d").val());
 
-		const m = parseInt($("#m").val());
+		const mStr = $("#m").val();
+		if (mStr) {
+			const m = parseInt(mStr);
 
-		let aS = parseInt(a - b) + parseInt(a - c) + parseInt(a - d);
-		//let rez = "aS=" + aS + "\n";
-		$("#aS").text(aS);
-		display("a", aS * m / 100)
+			let aS = a - b + a - c + a - d;
+			display("a", aS, m)
 
-		let bS = parseInt(b - a) + parseInt(b - c) + parseInt(b - d);
-		//rez = rez + "bS=" + bS + "\n";
-		$("#bS").text(bS);
-		display("b", bS * m / 100)
+			let bS = b - a + b - c + b - d;
+			display("b", bS, m)
 
-		let cS = parseInt(c - a) + parseInt(c - b) + parseInt(c - d);
-		//rez = rez + "cS=" + cS + "\n";
-		$("#cS").text(cS);
-		display("c", cS * m / 100)
+			let cS = c - a + c - b + c - d;
+			display("c", cS, m)
 
-		let dS = parseInt(d - a) + parseInt(d - b) + parseInt(d - c);
-		//rez = rez + "dS=" + dS + "\n";
-		$("#dS").text(dS);
-		display("d", dS * m / 100)
+			let dS = d - a + d - b + d - c;
+			display("d", dS, m)
 
-		//alert( "rez=\n" + rez);
+		} else {
+			error("Please input Price in cents [\u00A2].");
+		}
 
 	});
 
 }); // end of document ready
 
-function display(p, n) {
-	const winBoxId = "#" + p + "WinBox";
-	const loseBoxId = "#" + p + "LoseBox";
+function error(m) {
+	console.log(m);
+	$("#err").show();
+	$("#err").text(m);
+}
 
-	const winId = "#" + p + "Win";
-	const loseId = "#" + p + "Lose";
-	if (!$(winBoxId).hasClass("hidden")) {
-		$(winBoxId).addClass("hidden");
+function display(p, s, m) {
+	const resId = "#" + p + "S";
+	$(resId).text(s);
+	const boxId = "#" + p + "Box";
+
+	const n = s * m / 100
+
+	const winClass = "win"; //"success"
+	const loseClass = "lose"; //"danger"
+
+	if ($(boxId).hasClass(loseClass)) {
+		$(boxId).removeClass(loseClass);
 	}
 
-	if (!$(loseBoxId).hasClass("hidden")) {
-		$(loseBoxId).addClass("hidden");
+	if ($(boxId).hasClass(winClass)) {
+		$(boxId).removeClass(winClass);
 	}
 
 	if (n < 0) {
 		// win
-		$(winBoxId).removeClass("hidden");
-		$(winId).text(formatAsMoney(Math.abs(n)));
+		$(boxId).addClass(winClass);
+		$(boxId).text(formatAsMoney(Math.abs(n)));
 	} else if (n === 0) {
 
 	} else {
-		$(loseBoxId).removeClass("hidden");
-		$(loseId).text(formatAsMoney(Math.abs(n)));
+		$(boxId).addClass(loseClass);
+		$(boxId).text(formatAsMoney(Math.abs(n)));
 	}
 }
 
